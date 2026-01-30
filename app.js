@@ -1,4 +1,7 @@
-require("dotenv").config();   // ⬅️ פעם אחת בלבד, הכי למעלה
+require("dotenv").config();
+
+console.log("YT KEY LEN =", (process.env.YOUTUBE_API_KEY || "").length);
+console.log("NODE_ENV =", process.env.NODE_ENV);
 
 const express = require("express");
 const path = require("path");
