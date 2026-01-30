@@ -25,7 +25,8 @@
     </div>
   </div>
 
-  <div class="card mb-4">
+  <!-- Search top -->
+  <div class="card mb-3">
     <div class="card-body">
       <form class="row g-2" method="GET" action="/favorites">
         <div class="col-md-10">
@@ -37,6 +38,18 @@
       </form>
     </div>
   </div>
+
+  <!-- Info + Error -->
+  <p class="text-muted mb-2">
+    Query: <b><%= q || '' %></b> |
+    Results: <b><%= (results && results.length) ? results.length : 0 %></b>
+  </p>
+
+  <% if (error) { %>
+    <div class="alert alert-danger">
+      <b>YouTube error:</b> <%= error %>
+    </div>
+  <% } %>
 
   <% if (results && results.length) { %>
     <h5 class="mb-2">Results</h5>
@@ -64,6 +77,7 @@
     </div>
   <% } %>
 
+  <!-- Favorites bottom -->
   <h5 class="mb-2">My Favorites</h5>
 
   <% if (!favorites || favorites.length === 0) { %>
@@ -79,7 +93,8 @@
             <a target="_blank" href="https://www.youtube.com/watch?v=<%= f.videoId %>">Open</a>
           </div>
 
-          <form method="POST" action="/favorites/delete">
+          <!-- FIXED: must match routes/controller -->
+          <form method="POST" action="/favorites/remove">
             <input type="hidden" name="favoriteId" value="<%= f.id %>">
             <button class="btn btn-danger">Delete</button>
           </form>
@@ -90,3 +105,4 @@
 
 </body>
 </html>
+
